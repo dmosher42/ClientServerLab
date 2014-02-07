@@ -30,16 +30,20 @@ void *get_in_addr(struct sockaddr *sa)
 
 int main(int argc, char *argv[])
 {
-	int sockfd, numbytes;  
+	int sockfd, numbytes, run;  
 	char buf[MAXDATASIZE];
 	struct addrinfo hints, *servinfo, *p;
 	int rv;
 	char s[INET6_ADDRSTRLEN];
-
+	run = 1;
+	char newcommand[100];
 	if (argc != 2) {
 	    fprintf(stderr,"usage: client hostname\n");
 	    exit(1);
 	}
+	
+
+	printf("check %s", argv);
 
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
@@ -79,7 +83,19 @@ int main(int argc, char *argv[])
 	freeaddrinfo(servinfo); // all done with this structure
 	
 	//Socket it currently open:
-	
+	//Queue the client for a command
+	printf("Enter a command: ");
+        scanf("%s", newcommand);
+        while(getchar() != '\n') {}    
+
+	int numbytesSend;
+	if ((numbytesSend = send(sockfd, newcommand, strlen(newcommand), 0) == -1))	
+	{	
+		perror("recv");
+		exit(1);
+	}
+
+
 
 
 	//Here we recieve a message
@@ -99,12 +115,16 @@ int main(int argc, char *argv[])
 	printf("what do you want us to do now?");
 
 
-	while(1) 
-	{
+	//while(run) 
+	//{
+	//}
+	printf("Enter a command: ");
+	scanf("%s", newcommand);
+	while(getchar() != '\n') {}	    
 
+		
 	
 	
-	}
 
 
 

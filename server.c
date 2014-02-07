@@ -42,9 +42,10 @@ int main(char *argv[])
 	socklen_t sin_size;
 	struct sigaction sa;
 	int yes=1;
+	char msg[100];
 	char s[INET6_ADDRSTRLEN];
 	int rv;
-
+	int numbytes;
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
@@ -115,10 +116,17 @@ int main(char *argv[])
 		printf("server: got connection from %s\n", s);
 
 		if (!fork()) { // this is the child process
+			printf("now we listen for a command");
+			
 			close(sockfd); // child doesn't need the listener
-			printf("you want me to WHAT?\n");
-			printf("%s <--- your message\n", s);
-			if (send(new_fd, "Check it out it actually worked!!", 34, 0) == -1)
+			if ((numbytes = recv(new_fd, msg,  strlen(msg),  0)) == -1)
+                                perror("serverln123");
+			
+
+			msg[numbytes] = '\0';
+			printf("server recieved command: %s\n", msg);
+
+			if (send(new_fd, "Message from server to client", 34, 0) == -1)
 				perror("send");
 			close(new_fd);
 			exit(0);
