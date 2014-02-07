@@ -152,24 +152,6 @@ int main(char *argv[])
   			if (strcmp(submsg, "do") == 0)
                                 printf("would you download a car?\n");
 
-	
-				//	break;	
-				//case "de":
-				//	printf("delete files");
-				//	break;
-				//case "pr":
-				//	printf("print a file");
-				//	break;
-		 		//default:
-				//	printf("try agian");
-				//	break;
-			//}
-
-			//if( strcmp(msg,"list\0" ) == 0)
-			//	printf("you want us to list our contents");
-			//else
-			//	printf("something is wrong with strcmp");
-
 
 			if (send(new_fd, "Message from server to client", 34, 0) == -1)
 				perror("send");
