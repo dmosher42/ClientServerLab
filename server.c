@@ -43,6 +43,7 @@ int main(char *argv[])
 	struct sigaction sa;
 	int yes=1;
 	char msg[100];
+	char* submsg;
 	char s[INET6_ADDRSTRLEN];
 	int rv;
 	int numbytes;
@@ -125,13 +126,49 @@ int main(char *argv[])
 			
 			msg[numbytes] = '\0';
 			printf("server recieved command: %s\n", msg);
-			
-			
 
-			if( strcmp(msg,"list\0" ) == 0)
-				printf("you want us to list our contents");
-			else
-				printf("something is wrong with strcmp");
+
+
+			//char *foo = "abcdef";
+			//submsg = msg;
+			//sub
+			//printf("%s", foo);
+			char submsg[3];
+			submsg[0] = msg[0];
+			submsg[1] = msg[1];
+			submsg[2] = '\0';
+
+			printf("a trimmed version: %s\n", submsg);
+
+			if (strcmp(submsg, "li\0") == 0)
+				//we need to now figure out how to do the command line calls
+				//and we need to 			
+	
+				printf("you want us to list the contents of our directory\n");
+			if (strcmp(submsg, "ch") == 0)
+                                printf("you want us to find a file: yes/no\n");
+  			if (strcmp(submsg, "di") == 0)
+                                printf("you want us to diplay the contents of a file\n");
+  			if (strcmp(submsg, "do") == 0)
+                                printf("would you download a car?\n");
+
+	
+				//	break;	
+				//case "de":
+				//	printf("delete files");
+				//	break;
+				//case "pr":
+				//	printf("print a file");
+				//	break;
+		 		//default:
+				//	printf("try agian");
+				//	break;
+			//}
+
+			//if( strcmp(msg,"list\0" ) == 0)
+			//	printf("you want us to list our contents");
+			//else
+			//	printf("something is wrong with strcmp");
 
 
 			if (send(new_fd, "Message from server to client", 34, 0) == -1)
