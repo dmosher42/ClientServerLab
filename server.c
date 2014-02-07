@@ -125,8 +125,10 @@ int main(char *argv[])
 			
 			msg[numbytes] = '\0';
 			printf("server recieved command: %s\n", msg);
-		
-			if(strcmp(msg, "list\n") == 0)
+			
+			
+
+			if( strcmp(msg,"list\0" ) == 0)
 				printf("you want us to list our contents");
 			else
 				printf("something is wrong with strcmp");

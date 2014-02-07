@@ -103,27 +103,12 @@ int main(int argc, char *argv[])
 	}
 
 	buf[numbytes] = '\0';
-	printf("client: received '%s'\n",buf);
-	printf("what do you want us to do now?\n");
-
-	printf("Enter a command: ");
-	scanf("%s", newcommand);
-	while(getchar() != '\n') {}	    
+	printf("client: received '%s'\n",buf); 
 		
-	if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
-            perror("recv");
-            exit(1);
-        }
+	printf("goodbye");
 
-     	buf[numbytes] = '\0';
-        printf("client: received '%s'\n",buf);
-
+	
 	close(sockfd);
-
-
-
-
-
 	return 0;
 }
 
