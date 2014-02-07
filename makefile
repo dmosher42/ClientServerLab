@@ -1,4 +1,4 @@
-all: client pipe server
+all: clean client pipe server
 
 clean:
 	rm -rf *.o client pipe server

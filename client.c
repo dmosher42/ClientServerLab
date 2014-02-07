@@ -43,8 +43,6 @@ int main(int argc, char *argv[])
 	}
 	
 
-	printf("check %s", argv);
-
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
@@ -105,28 +103,20 @@ int main(int argc, char *argv[])
 	}
 
 	buf[numbytes] = '\0';
-	//Print it out
-	//
-	//
 	printf("client: received '%s'\n",buf);
-	//And close
-	//
-	//
-	printf("what do you want us to do now?");
+	printf("what do you want us to do now?\n");
 
-
-	//while(run) 
-	//{
-	//}
 	printf("Enter a command: ");
 	scanf("%s", newcommand);
 	while(getchar() != '\n') {}	    
-
 		
-	
-	
+	if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
+            perror("recv");
+            exit(1);
+        }
 
-
+     	buf[numbytes] = '\0';
+        printf("client: received '%s'\n",buf);
 
 	close(sockfd);
 

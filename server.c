@@ -113,18 +113,24 @@ int main(char *argv[])
 		inet_ntop(their_addr.ss_family,
 			get_in_addr((struct sockaddr *)&their_addr),
 			s, sizeof s);
+
 		printf("server: got connection from %s\n", s);
 
 		if (!fork()) { // this is the child process
-			printf("now we listen for a command");
+			printf("Now that socket is open we will listen for a command\n");
 			
 			close(sockfd); // child doesn't need the listener
 			if ((numbytes = recv(new_fd, msg,  strlen(msg),  0)) == -1)
                                 perror("serverln123");
 			
-
 			msg[numbytes] = '\0';
 			printf("server recieved command: %s\n", msg);
+		
+			if(strcmp(msg, "list\n") == 0)
+				printf("you want us to list our contents");
+			else
+				printf("something is wrong with strcmp");
+
 
 			if (send(new_fd, "Message from server to client", 34, 0) == -1)
 				perror("send");
