@@ -16,7 +16,7 @@
 #include <signal.h>
 
 #define PORT "3514"  // the port users will be connecting to
-
+//#define PORT "3490"  //Dee's port
 #define BACKLOG 10	 // how many pending connections queue will hold
 
 void sigchld_handler(int s)
@@ -143,7 +143,9 @@ int main(char *argv[])
 			if (strcmp(submsg, "li\0") == 0)
 				//we need to now figure out how to do the command line calls
 				//and we need to 			
-	
+				
+				
+
 				printf("you want us to list the contents of our directory\n");
 			if (strcmp(submsg, "ch") == 0)
                                 printf("you want us to find a file: yes/no\n");
